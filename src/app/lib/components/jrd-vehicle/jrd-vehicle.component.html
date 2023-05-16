@@ -1,0 +1,9 @@
+<article class="jrd-vehicle card m-2 p-2" *ngIf="vehicle">
+  <div class="row g-0">
+    <img class="jrd-vehicle__thumbnail col-md-4 me-2" src={{vehicle.thumbnailUrl}} />
+    <div class="jrd-vehicle__description col-md-8">
+      <span class="jrd-vehicle__name card-text">{{ vehicle.name }}</span>
+      <div class="jrd-vehicle__passenger-count"><span class="icon {{vehicle.name | lowercase}}"></span><small class="text-body-secondary">{{vehicle.maxPassengers}} Passengers</small></div>
+    </div>
+  </div>
+</article>
