@@ -10,7 +10,5 @@ export class AppComponent {
   vehicle: Vehicle = {
     name: 'Hatchback',
     maxPassengers: 2,
-    thumbnailUrl:
-      'https://res.jayride.com/web/dotcom/vehicle/370x300/car-economy-sedan.png',
   };
 }
