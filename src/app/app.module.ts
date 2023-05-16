@@ -9,9 +9,10 @@ import { ListingCardComponent } from './lib/components/listing-card/listing-card
 import { ListingGridComponent } from './lib/components/listing-grid/listing-grid.component';
 import { RequestQuoteComponent } from './pages/request-quote/request-quote.component';
 import { QuotesComponent } from './pages/quotes/quotes.component';
+import { ListingTableComponent } from './lib/components/listing-table/listing-table.component';
 
 @NgModule({
-  declarations: [AppComponent, VehicleTypeComponent, ListingCardComponent, ListingGridComponent, RequestQuoteComponent, QuotesComponent],
+  declarations: [AppComponent, VehicleTypeComponent, ListingCardComponent, ListingGridComponent, RequestQuoteComponent, QuotesComponent, ListingTableComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
