@@ -1,6 +1,10 @@
 .jrd-vehicle {
   &__thumbnail {
-    height: 3rem;
+    height: 2rem;
     width: auto;
+  }
+
+  svg {
+    opacity: 0.5;
   }
 }
