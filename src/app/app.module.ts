@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import { VehicleTypeComponent } from './lib/components/vehicle-type/vehicle-type.component';
 import { ListingCardComponent } from './lib/components/listing-card/listing-card.component';
 import { ListingGridComponent } from './lib/components/listing-grid/listing-grid.component';
+import { RequestQuoteComponent } from './pages/request-quote/request-quote.component';
+import { QuotesComponent } from './pages/quotes/quotes.component';
 
 @NgModule({
-  declarations: [AppComponent, VehicleTypeComponent, ListingCardComponent, ListingGridComponent],
+  declarations: [AppComponent, VehicleTypeComponent, ListingCardComponent, ListingGridComponent, RequestQuoteComponent, QuotesComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
