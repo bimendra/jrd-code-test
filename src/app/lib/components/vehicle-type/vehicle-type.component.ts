@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import VehicleType from '../../interfaces/vehicle-type.interface';
-
 @Component({
   selector: 'jrd-vehicle-type',
-  templateUrl: './jrd-vehicle-type.component.html',
-  styleUrls: ['./jrd-vehicle-type.component.scss'],
+  templateUrl: './vehicle-type.component.html',
+  styleUrls: ['./vehicle-type.component.scss'],
 })
-export class JrdVehicleTypeComponent {
+export class VehicleTypeComponent {
   @Input() vehicleType?: VehicleType;
 }

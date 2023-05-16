@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JrdVehicleTypeComponent } from './lib/components/jrd-vehicle-type/jrd-vehicle-type.component';
-import { JrdListingComponent } from './lib/components/jrd-listing/jrd-listing.component';
+
+import { VehicleTypeComponent } from './lib/components/vehicle-type/vehicle-type.component';
+import { ListingCardComponent } from './lib/components/listing-card/listing-card.component';
+import { ListingGridComponent } from './lib/components/listing-grid/listing-grid.component';
 
 @NgModule({
-  declarations: [AppComponent, JrdVehicleTypeComponent, JrdListingComponent],
+  declarations: [AppComponent, VehicleTypeComponent, ListingCardComponent, ListingGridComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
