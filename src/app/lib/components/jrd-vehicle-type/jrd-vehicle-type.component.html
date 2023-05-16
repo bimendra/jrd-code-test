@@ -1,12 +1,12 @@
-<article class="jrd-vehicle m-2 p-2" *ngIf="vehicle">
+<article class="jrd-vehicle-type m-2 p-2" *ngIf="vehicleType">
   <div class="d-flex align-items-center">    
     <div class="jrd-vehicle__description flex-fill  d-flex align-items-center">
-      <span class="badge text-bg-primary ms-1 me-3">{{ vehicle.name }}</span>
+      <span class="badge text-bg-primary ms-1 me-3">{{ vehicleType.name }}</span>
       <div class="jrd-vehicle__passenger-count d-flex align-items-center">        
         <svg class="jrd-vehicle__icon" width="12" height="12" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
           <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
         </svg>        
-        <small class="text-body-secondary ms-2">{{vehicle.maxPassengers}} Passengers</small>
+        <small class="text-body-secondary ms-2">{{vehicleType.maxPassengers}} Passengers</small>
       </div>
     </div>
   </div>

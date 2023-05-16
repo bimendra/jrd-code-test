@@ -1,4 +1,4 @@
-export default interface Vehicle {
+export default interface VehicleType {
   name: string;
   maxPassengers: number;
 }

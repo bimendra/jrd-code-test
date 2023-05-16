@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import Vehicle from './lib/interfaces/vehicle.interface';
+import VehicleType from './lib/interfaces/vehicle-type.interface';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import Vehicle from './lib/interfaces/vehicle.interface';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  vehicle: Vehicle = {
+  vehicleType: VehicleType = {
     name: 'Hatchback',
     maxPassengers: 2,
   };
