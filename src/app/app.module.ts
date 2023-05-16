@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -12,8 +12,16 @@ import { QuotesComponent } from './pages/quotes/quotes.component';
 import { ListingTableComponent } from './lib/components/listing-table/listing-table.component';
 
 @NgModule({
-  declarations: [AppComponent, VehicleTypeComponent, ListingCardComponent, ListingGridComponent, RequestQuoteComponent, QuotesComponent, ListingTableComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    VehicleTypeComponent,
+    ListingCardComponent,
+    ListingGridComponent,
+    RequestQuoteComponent,
+    QuotesComponent,
+    ListingTableComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
