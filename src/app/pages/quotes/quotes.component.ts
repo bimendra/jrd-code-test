@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { orderBy } from 'lodash';
+import { orderBy, mean, min, max } from 'lodash';
 import { QuoteRequestService } from 'src/app/quote-request.service';
 import QuoteRequest from 'src/app/lib/interfaces/quote-request.interface';
 import Listing from 'src/app/lib/interfaces/listing.interface';
@@ -24,6 +24,10 @@ export class QuotesComponent {
   orderCriteria: string = 'pricePerPassenger';
   sortOrder: 'asc' | 'desc' = 'asc';
 
+  minPrice?: number;
+  maxPrice?: number;
+  avgPrice?: number;
+
   ngOnInit() {
     this.getQuoteRequest();
   }
@@ -40,6 +44,12 @@ export class QuotesComponent {
       .subscribe((quoteRequest) => {
         this.quoteRequest = quoteRequest;
         this.listings = this.quoteRequest.listings;
+        let prices: number[] = this.listings.map(
+          (listing) => listing.pricePerPassenger
+        );
+        this.avgPrice = mean(prices);
+        this.minPrice = min(prices);
+        this.maxPrice = max(prices);
         this.processPagination();
       });
   }
