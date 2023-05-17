@@ -3,7 +3,7 @@ import { QuoteRequestService } from 'src/app/quote-request.service';
 import QuoteRequest from '../../interfaces/quote-request.interface';
 import Listing from '../../interfaces/listing.interface';
 import { map } from 'rxjs/operators';
-import { chunk, orderBy } from 'lodash';
+import { orderBy } from 'lodash';
 
 @Component({
   selector: 'jrd-listing-table',
@@ -11,14 +11,24 @@ import { chunk, orderBy } from 'lodash';
   styleUrls: ['./listing-table.component.scss'],
 })
 export class ListingTableComponent {
-  constructor(private quoteRequestService: QuoteRequestService) {}
+  constructor(private quoteRequestService: QuoteRequestService) {
+    this.refreshListings();
+    this.sortListings = this.sortListings.bind(this);
+    this.filterListingsByPassengerCount =
+      this.filterListingsByPassengerCount.bind(this);
+  }
 
   quoteRequest?: QuoteRequest;
-  defaultItemsPerPage: number = 2;
-  paginatedListings: any = {};
-  sortCriteria: string = 'pricePerPassenger';
-  sortOrder: any = 'asc';
-  minPassengerCount = 3;
+
+  page: number = 1;
+  pageSize: number = 6;
+  listings: Listing[] = [];
+  collectionSize: number = this.listings.length;
+  displayedListings: Listing[] = [];
+
+  maxPassengers = 3;
+  orderCriteria: string = 'pricePerPassenger';
+  sortOrder: 'asc' | 'desc' = 'asc';
 
   ngOnInit() {
     this.getQuoteRequest();
@@ -27,38 +37,43 @@ export class ListingTableComponent {
   getQuoteRequest() {
     this.quoteRequestService
       .getQuoteRequest()
-      // Using rxjs pipe to sort & filter out listings with cars max with passenger count of 3
       .pipe(
         map((quoteRequest) => {
-          // ordering listing according to the price from low to high
-          quoteRequest.listings = orderBy(
-            quoteRequest.listings,
-            this.sortCriteria,
-            this.sortOrder
-          );
-          return quoteRequest;
-        }),
-        map((quoteRequest) => {
-          // filtering out cars with less thaan 3 max passenger count
-          quoteRequest.listings = quoteRequest.listings.filter(
-            (listing) =>
-              listing.vehicleType.maxPassengers >= this.minPassengerCount
-          );
+          quoteRequest.listings = this.sortListings(quoteRequest.listings);
           return quoteRequest;
         })
       )
       .subscribe((quoteRequest) => {
         this.quoteRequest = quoteRequest;
+        this.listings = this.quoteRequest.listings;
+        this.refreshListings();
+        this.collectionSize = this.listings.length;
       });
   }
 
-  paginateListings(
-    listingItems: Listing[],
-    itemsPerPage = this.defaultItemsPerPage
-  ) {
-    const paginatedListings = chunk(listingItems, itemsPerPage);
-    paginatedListings.forEach((item, i) => {
-      this.paginatedListings[i] = item;
-    });
+  refreshListings() {
+    this.displayedListings = this.filterListingsByPassengerCount(
+      this.sortListings(
+        this.listings
+          .map((listing, i) => ({
+            id: i + 1,
+            ...listing,
+          }))
+          .slice(
+            (this.page - 1) * this.pageSize,
+            (this.page - 1) * this.pageSize + this.pageSize
+          )
+      )
+    );
+  }
+
+  sortListings(listings: Listing[]) {
+    return orderBy(listings, this.orderCriteria, this.sortOrder);
+  }
+
+  filterListingsByPassengerCount(listings: Listing[]) {
+    return listings.filter(
+      (listing) => listing.vehicleType.maxPassengers >= this.maxPassengers
+    );
   }
 }
