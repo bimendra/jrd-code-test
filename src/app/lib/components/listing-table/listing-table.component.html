@@ -1,5 +1,5 @@
-<div *ngIf="quoteRequest">
-  <table class="table table-striped">
+
+  <table class="table table-striped" *ngIf="listings?.length">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let listing of displayedListings">
+      <tr *ngFor="let listing of listings">
         <td>
           <strong>{{ listing.name }}</strong>
         </td>
@@ -23,46 +23,4 @@
       </tr>
     </tbody>
   </table>
-  <div class="d-flex justify-content-between p-2">
-    <ngb-pagination
-      [collectionSize]="collectionSize"
-      [(page)]="page"
-      [pageSize]="pageSize"
-      (pageChange)="refreshListings()"
-    >
-    </ngb-pagination>
 
-    <div class="d-flex">
-      <select
-        class="form-select me-2"
-        style="width: auto"
-        [(ngModel)]="sortOrder"
-        (ngModelChange)="refreshListings()"
-      >
-        <option [ngValue]="'asc'">Price low to high</option>
-        <option [ngValue]="'desc'">Price high to low</option>       
-      </select>
-      <select
-        class="form-select me-2"
-        style="width: auto"
-        [(ngModel)]="maxPassengers"
-        (ngModelChange)="refreshListings()"
-      >
-        <option [ngValue]="2">2+ Max passengers</option>
-        <option [ngValue]="3">3+ Max passengers</option>
-        <option [ngValue]="5">5+ Max passengers</option>      
-      </select>
-
-      <select
-        class="form-select"
-        style="width: auto"
-        [(ngModel)]="pageSize"
-        (ngModelChange)="refreshListings()"
-      >
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="4">4 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
-      </select>
-    </div>
-  </div>
-</div>
