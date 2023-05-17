@@ -1,1 +1,26 @@
-<p>listing-table works!</p>
+
+  <table class="table table-striped" *ngIf="listings?.length">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price Per Passenger</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Max Passengers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let listing of listings">
+        <td>
+          <strong>{{ listing.name }}</strong>
+        </td>
+        <td>{{ listing.pricePerPassenger | currency : "AUD" }}</td>
+        <td>
+          <span class="badge text-bg-secondary">{{
+            listing.vehicleType.name
+          }}</span>
+        </td>
+        <td>{{ listing.vehicleType.maxPassengers }}</td>
+      </tr>
+    </tbody>
+  </table>
+

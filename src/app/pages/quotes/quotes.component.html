@@ -1,1 +1,43 @@
-<p>quotes works!</p>
+<jrd-listing-table [listings]="displayedListings"></jrd-listing-table>
+<div class="d-flex justify-content-between p-2" *ngIf="quoteRequest">
+  <ngb-pagination
+    [collectionSize]="collectionSize"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="processPagination()"
+  >
+  </ngb-pagination>
+
+  <div class="d-flex">
+    <select
+      class="form-select me-2"
+      style="width: auto"
+      [(ngModel)]="sortOrder"
+      (ngModelChange)="processPagination()"
+    >
+      <option [ngValue]="'asc'">Price low to high</option>
+      <option [ngValue]="'desc'">Price high to low</option>
+    </select>
+    <select
+      class="form-select me-2"
+      style="width: auto"
+      [(ngModel)]="maxPassengers"
+      (ngModelChange)="processPagination()"
+    >
+      <option [ngValue]="2">2+ Max passengers</option>
+      <option [ngValue]="3">3+ Max passengers</option>
+      <option [ngValue]="5">5+ Max passengers</option>
+    </select>
+
+    <select
+      class="form-select"
+      style="width: auto"
+      [(ngModel)]="pageSize"
+      (ngModelChange)="processPagination()"
+    >
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</div>
