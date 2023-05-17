@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import {
+  NgbPaginationModule,
+  NgbTypeaheadModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { VehicleTypeComponent } from './lib/components/vehicle-type/vehicle-type.component';
@@ -21,7 +26,14 @@ import { ListingTableComponent } from './lib/components/listing-table/listing-ta
     QuotesComponent,
     ListingTableComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbPaginationModule,
+    NgbTypeaheadModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
