@@ -15,6 +15,8 @@ import { ListingGridComponent } from './lib/components/listing-grid/listing-grid
 import { RequestQuoteComponent } from './pages/request-quote/request-quote.component';
 import { QuotesComponent } from './pages/quotes/quotes.component';
 import { ListingTableComponent } from './lib/components/listing-table/listing-table.component';
+import { SidebarComponent } from './lib/components/sidebar/sidebar.component';
+import { HeaderComponent } from './lib/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ListingTableComponent } from './lib/components/listing-table/listing-ta
     RequestQuoteComponent,
     QuotesComponent,
     ListingTableComponent,
+    SidebarComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
