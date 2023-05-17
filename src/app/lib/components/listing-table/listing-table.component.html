@@ -1,11 +1,13 @@
 
-  <table class="table table-striped" *ngIf="listings?.length">
+<div class="table-wrapper border rounded p-3 pb-0" *ngIf="listings?.length">
+  <table class="table jrd-listing-table">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Price Per Passenger</th>
         <th scope="col">Vehicle Type</th>
         <th scope="col">Max Passengers</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +22,9 @@
           }}</span>
         </td>
         <td>{{ listing.vehicleType.maxPassengers }}</td>
+        <!-- <td><button class="btn btn-default">Book</button></td> -->
       </tr>
     </tbody>
   </table>
+  </div>
 
