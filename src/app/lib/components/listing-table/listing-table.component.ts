@@ -53,18 +53,16 @@ export class ListingTableComponent {
 
   refreshListings() {
     this.displayedListings = this.filterListingsByPassengerCount(
-      this.sortListings(
-        this.listings
-          .map((listing, i) => ({
-            id: i + 1,
-            ...listing,
-          }))
-          .slice(
-            (this.page - 1) * this.pageSize,
-            (this.page - 1) * this.pageSize + this.pageSize
-          )
-      )
-    );
+      this.sortListings(this.listings)
+    )
+      .map((listing, i) => ({
+        id: i + 1,
+        ...listing,
+      }))
+      .slice(
+        (this.page - 1) * this.pageSize,
+        (this.page - 1) * this.pageSize + this.pageSize
+      );
   }
 
   sortListings(listings: Listing[]) {
