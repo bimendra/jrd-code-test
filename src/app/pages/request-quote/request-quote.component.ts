@@ -12,8 +12,12 @@ interface RequestQuoteSubmissionData {
   firstName: string;
   lastName: string;
   email: string;
-  channel: 'partner' | 'agent' | 'directCustomer';
+  channel: {
+    key: string;
+    label: string;
+  };
   price: number;
+  travelDate: string;
 }
 @Component({
   selector: 'jrd-request-quote',
@@ -23,6 +27,21 @@ interface RequestQuoteSubmissionData {
 export class RequestQuoteComponent {
   requestQuoteForm!: FormGroup;
   requestQuoteSubmissionData: RequestQuoteSubmissionData;
+
+  channels = [
+    {
+      key: 'partner',
+      label: 'Partner',
+    },
+    {
+      key: 'agent',
+      label: 'Agent',
+    },
+    {
+      key: 'directCustomer',
+      label: 'Dircet Customer',
+    },
+  ];
 
   constructor() {
     this.requestQuoteSubmissionData = {} as RequestQuoteSubmissionData;
@@ -43,6 +62,10 @@ export class RequestQuoteComponent {
       price: new FormControl(this.requestQuoteSubmissionData.price, [
         Validators.required,
       ]),
+      travelDate: new FormControl(this.requestQuoteSubmissionData.travelDate, [
+        Validators.required,
+      ]),
+      channel: new FormControl(this.channels[0].key, [Validators.required]),
     });
   }
 
@@ -64,6 +87,14 @@ export class RequestQuoteComponent {
 
   get price() {
     return this.requestQuoteForm.get('price')!;
+  }
+
+  get travelDate() {
+    return this.requestQuoteForm.get('travelDate')!;
+  }
+
+  get channel() {
+    return this.requestQuoteForm.get('channel')!;
   }
 
   pickupTimeControl = new FormControl<NgbTimeStruct | null>(null, (control) => {
