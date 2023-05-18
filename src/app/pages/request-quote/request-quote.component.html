@@ -1,1 +1,238 @@
-<p>request-quote works!</p>
+<div class="d-flex flex-column p-4">
+  <div class="container-fluid mb-4">
+    <h4>Request Quote</h4>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <form [formGroup]="requestQuoteForm" #form="ngForm">
+          <div class="row g-6">
+            <div class="col-md-6 mb-3">
+              <label for="firstName" class="form-label">First name:</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                formControlName="firstName"
+                placeholder="Your first name"
+                required
+                class="form-control"
+                [class.is-invalid]="
+                  firstName.invalid && (firstName.dirty || firstName.touched)
+                "
+              />
+              <div
+                *ngIf="
+                  firstName.invalid && (firstName.dirty || firstName.touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="firstName.errors?.['required']">
+                  First name is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Last name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                formControlName="lastName"
+                placeholder="Your last name"
+                required
+                class="form-control"
+                [class.is-invalid]="
+                  lastName.invalid && (lastName.dirty || lastName.touched)
+                "
+              />
+              <div
+                *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                class="invalid-feedback"
+              >
+                <div *ngIf="lastName.errors?.['required']">
+                  Last name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-6 mb-3">
+            <div class="col-md-6">
+              <label class="form-label">E-mail</label>
+              <div class="input-group">
+                <span class="input-group-text">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                    class="bi bi-envelope"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  formControlName="email"
+                  placeholder="Your email"
+                  required
+                  class="form-control"
+                  [class.is-invalid]="
+                    email.invalid && (email.dirty || email.touched)
+                  "
+                />
+                <div
+                  *ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="email.errors?.['required']">
+                    A valid email is required.
+                  </div>
+                  <div
+                    *ngIf="!email.errors?.['required'] && email.errors?.['emailValidator']"
+                  >
+                    Invalid email format.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Channel</label>
+              <select class="form-select" required >
+                <option *ngFor="let channel of channels" [ngValue]="channel">
+                  {{ channel.label }}
+                </option>
+              </select>
+              <div class="invalid-feedback">Please select a valid state.</div>
+            </div>
+          </div>
+          <div class="row g-6 mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Travel Date</label>
+              <div class="input-group">
+                <input
+                  placeholder="yyyy-mm-dd"
+                  class="form-control"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  required
+                  formControlName="travelDate"
+                  [class.is-invalid]="
+                    travelDate.invalid &&
+                    (travelDate.dirty || travelDate.touched)
+                  "
+                />
+                <button
+                  class="btn btn-outline-primary"
+                  type="button"
+                  (click)="d.toggle()"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-calendar"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                    />
+                    <path
+                      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                    />
+                  </svg>
+                </button>
+                <div
+                  *ngIf="
+                    travelDate.invalid &&
+                    (travelDate.dirty || travelDate.touched)
+                  "
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="travelDate.errors?.['required']">
+                    Travel date is required.
+                  </div>
+                  <div
+                    *ngIf="!travelDate.errors?.['required'] && email.errors?.['travelDateValidator']"
+                  >
+                    Invalid travelDate format.
+                  </div>
+                </div>
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Pickup time</label>
+              <div class="input-group">
+                <ngb-timepicker
+                  name="time"
+                  [meridian]="true"
+                  [spinners]="false"
+                  [formControl]="pickupTimeControl"
+                  required
+                ></ngb-timepicker>
+              </div>
+
+              <div
+                *ngIf="
+                  (pickupTimeControl?.dirty || pickupTimeControl?.touched) &&
+                  pickupTimeControl.errors
+                "
+                class="form-text text-danger"
+              >
+                Select a pick p time
+              </div>
+            </div>
+          </div>
+          <div class="row g-6 mb-3">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Price</label>
+              <div class="input-group">
+                <span class="input-group-text">A$</span>
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  formControlName="price"
+                  placeholder="Enter price"
+                  required
+                  class="form-control"
+                  [class.is-invalid]="
+                    price.invalid && (price.dirty || price.touched)
+                  "
+                />
+                <div
+                  *ngIf="price.invalid && (price.dirty || price.touched)"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="price.errors?.['required']">
+                    Enter a valid price.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="requestMeetAndGreet" [ngModelOptions]="{standalone: true}" />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Request Meet &amp; Greet
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row g-6">
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Request</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

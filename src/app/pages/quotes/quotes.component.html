@@ -42,8 +42,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 border rounded p-3">
-        <div class="from d-flex d-flex flex-row mb-1">
+      <div class="col-md-3">
+        <div class="border rounded p-3">
+          <div class="to d-flex d-flex flex-row mb-1">
           <span class="fs-6 me-2 text-secondary">Min Price:</span>
           <span class="fs-6">{{ minPrice | currency : "AUD" }}</span>
         </div>
@@ -55,9 +56,10 @@
           <span class="fs-6 me-2 text-secondary">Average Price:</span>
           <span class="fs-6">{{ avgPrice | currency : "AUD" }}</span>
         </div>
+        </div>
       </div>
       <div class="col-md-3">
-        <div class="from d-flex border rounded p-3">
+        <div class="price d-flex border rounded p-3">
           <div class="details d-flex flex-column ms-2">
             <span class="fs-6 text-secondary">Total numer of listings</span>
             <span class="fs-6">{{ listings.length }}</span>

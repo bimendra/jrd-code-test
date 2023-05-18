@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,
+  NgbDatepickerModule,
+  NgbTimepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { EmailValidatorDirective } from 'src/app/lib/directives/email-validator.directive';
 import { AppComponent } from './app.component';
 
 import { VehicleTypeComponent } from './lib/components/vehicle-type/vehicle-type.component';
@@ -29,14 +32,18 @@ import { HeaderComponent } from './lib/components/header/header.component';
     ListingTableComponent,
     SidebarComponent,
     HeaderComponent,
+    EmailValidatorDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbPaginationModule,
     NgbTypeaheadModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
