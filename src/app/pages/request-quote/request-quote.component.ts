@@ -1,24 +1,10 @@
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { emailValidator } from '../../lib/directives/email-validator.directive';
+import RequestQuoteFormSubmissionData from 'src/app/lib/interfaces/request-quote-form-submission-data-form.interface';
+import { QuoteRequestService } from 'src/app/quote-request.service';
 
-interface RequestQuoteSubmissionData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  channel: {
-    key: string;
-    label: string;
-  };
-  price: number;
-  travelDate: string;
-}
 @Component({
   selector: 'jrd-request-quote',
   templateUrl: './request-quote.component.html',
@@ -26,7 +12,11 @@ interface RequestQuoteSubmissionData {
 })
 export class RequestQuoteComponent {
   requestQuoteForm!: FormGroup;
-  requestQuoteSubmissionData: RequestQuoteSubmissionData;
+  requestQuoteSubmissionData: RequestQuoteFormSubmissionData;
+  pickupTime = {
+    hour: 9,
+    minute: 30,
+  };
 
   channels = [
     {
@@ -45,28 +35,20 @@ export class RequestQuoteComponent {
 
   requestMeetAndGreet: boolean = false;
 
-  constructor() {
-    this.requestQuoteSubmissionData = {} as RequestQuoteSubmissionData;
+  submissionResult: any | null = null;
+
+  constructor(private quoteRequestSerice: QuoteRequestService) {
+    this.requestQuoteSubmissionData = {} as RequestQuoteFormSubmissionData;
   }
 
   ngOnInit(): void {
+    const travelDate = new Date(Date.now() + 1000 * 3600 * 24 * 7);
     this.requestQuoteForm = new FormGroup({
-      firstName: new FormControl(this.requestQuoteSubmissionData.firstName, [
-        Validators.required,
-      ]),
-      lastName: new FormControl(this.requestQuoteSubmissionData.lastName, [
-        Validators.required,
-      ]),
-      email: new FormControl(this.requestQuoteSubmissionData.email, [
-        Validators.required,
-        emailValidator(),
-      ]),
-      price: new FormControl(this.requestQuoteSubmissionData.price, [
-        Validators.required,
-      ]),
-      travelDate: new FormControl(this.requestQuoteSubmissionData.travelDate, [
-        Validators.required,
-      ]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, emailValidator()]),
+      price: new FormControl(null, [Validators.required]),
+      travelDate: new FormControl(null, [Validators.required]),
       channel: new FormControl(this.channels[0].key, [Validators.required]),
     });
   }
@@ -114,6 +96,19 @@ export class RequestQuoteComponent {
       }
       return;
     }
-    this.requestQuoteSubmissionData = this.requestQuoteForm.value;
+  }
+
+  submitForm() {
+    this.submissionResult = null;
+    this.quoteRequestSerice
+      .submitRequestQuoteFormData({
+        ...this.requestQuoteForm.value,
+        requestMeetAndGreet: this.requestMeetAndGreet,
+        pickupTime: this.pickupTime,
+      })
+      .subscribe((result) => {
+        this.requestQuoteForm.reset();
+        this.submissionResult = result;
+      });
   }
 }
