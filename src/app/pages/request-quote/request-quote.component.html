@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8">
-        <form [formGroup]="requestQuoteForm" #form="ngForm">
+        <form [formGroup]="requestQuoteForm" #form="ngForm" (submit)="submitForm()">
           <div class="row g-6">
             <div class="col-md-6 mb-3">
               <label for="firstName" class="form-label">First name:</label>
@@ -177,6 +177,7 @@
                   [spinners]="false"
                   [formControl]="pickupTimeControl"
                   required
+                  [(ngModel)]="pickupTime"
                 ></ngb-timepicker>
               </div>
 
@@ -228,7 +229,7 @@
           </div>
           <div class="row g-6">
             <div class="col-12">
-              <button class="btn btn-primary" type="submit">Request</button>
+              <button class="btn btn-primary" type="submit" [disabled]="!requestQuoteForm.valid">Request</button>
             </div>
           </div>
         </form>
@@ -236,3 +237,6 @@
     </div>
   </div>
 </div>
+	<ngb-toast *ngIf="submissionResult" header="Thank you {{ submissionResult.firstName }}, We got your request." [autohide]="true" >
+		You asked for a quote for a booking on {{submissionResult.travelDate.day}}/{{submissionResult.travelDate.month}}/{{submissionResult.travelDate.year}} for {{submissionResult.price | currency: 'AUD'}}. We will get to you soon.
+	</ngb-toast>
