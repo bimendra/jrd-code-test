@@ -43,6 +43,8 @@ export class RequestQuoteComponent {
     },
   ];
 
+  requestMeetAndGreet: boolean = false;
+
   constructor() {
     this.requestQuoteSubmissionData = {} as RequestQuoteSubmissionData;
   }
