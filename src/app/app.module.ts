@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {
   NgbPaginationModule,
   NgbTypeaheadModule,
+  NgbDatepickerModule,
+  NgbTimepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
@@ -37,6 +39,8 @@ import { HeaderComponent } from './lib/components/header/header.component';
     FormsModule,
     NgbPaginationModule,
     NgbTypeaheadModule,
+    NgbDatepickerModule,
+    NgbTimepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

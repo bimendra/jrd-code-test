@@ -1,1 +1,125 @@
-<p>request-quote works!</p>
+<div class="d-flex flex-column p-4">
+  <div class="container-fluid mb-4">
+    <h4>Request Quote</h4>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <form>
+          <div class="row g-6">
+            <div class="col-md-6 mb-3">
+              <label for="validationServer01" class="form-label"
+                >First name</label
+              >
+              <input type="text" class="form-control " required />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-6">
+              <label for="validationServer02" class="form-label"
+                >Last name</label
+              >
+              <input type="text" class="form-control " required />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+
+          <div class="row g-6 mb-3">
+            <div class="col-md-6">
+              <label for="validationServerUsername" class="form-label"
+                >E-mail</label
+              >
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input
+                  type="text"
+                  class="form-control "                  
+                  aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+                  required
+                />
+                <div                 
+                  class="valid-feedback"
+                >
+                  Please enter a valid email.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="validationServer04" class="form-label">Channel</label>
+              <select
+                class="form-select "                
+                aria-describedby="validationServer04Feedback"
+                required
+              >
+                <option value="">Partner</option>
+                <option value="">Agent</option>
+                <option value="">Direct Customer</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid state.
+              </div>
+            </div>
+          </div>
+          <div class="row g-6 mb-3">
+            <div class="col-md-6">
+              <label for="validationServer02" class="form-label"
+                >Travel Date</label
+              >
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  required
+                />
+                <button
+                  class="btn btn-outline-primary"
+                  type="button"                 
+                  (click)="d.toggle()"
+                >
+                  Select
+                </button>
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-6">
+              <label for="validationServer02" class="form-label">Time</label>
+              <div class="input-group">
+                <ngb-timepicker
+                  [meridian]="true"
+                  [spinners]="false"
+                ></ngb-timepicker>
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+          <div class="row g-6 mb-3">
+            <div class="col-md-6 mb-3">
+              <label for="validationServer01" class="form-label">Price</label>
+              <div class="input-group">
+                <span class="input-group-text">A$</span>
+                <input type="text" class="form-control" required />
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+              <div class="form-check mt-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""                 
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Request Meet &amp; Greet
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row g-6">
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Request</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
