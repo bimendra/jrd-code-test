@@ -1,6 +1,56 @@
-<header class="d-flex flex-wrap justify-content-end py-3 mb-4">  
-  <div class="text-end me-3">
-    <button type="button" class="btn btn-light text-dark me-2">Login</button>
-    <button type="button" class="btn btn-primary">Sign-up</button>
-  </div>
+<header
+  class="d-flex d-lg-none flex-wrap justify-content-center py-3 mb-4 border-bottom px-4 mx-1"
+>
+  <a
+    routerLink="/"
+    class="d-flex align-items-center mb-3 mb-md-0 me-auto link-body-emphasis text-decoration-none"
+  >
+    <svg
+      class="bi pe-none me-2"
+      width="40"
+      height="40"
+      viewBox="0 0 41 41"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="0.906067"
+        y="0.315435"
+        width="40"
+        height="40"
+        rx="6"
+        fill="black"
+      />
+      <path
+        d="M16.3955 34.3941C15.0139 34.3941 13.7918 34.155 12.7291 33.6768C11.693 33.172 10.8694 32.375 10.2584 31.2857C9.6473 30.1699 9.28863 28.6954 9.18236 26.8622C9.07609 25.0025 9.26207 22.7309 9.74028 20.0476C10.3779 16.461 11.2546 13.6316 12.3705 11.5593C13.5129 9.46045 14.8413 7.95938 16.3556 7.05609C17.8965 6.15279 19.5968 5.70114 21.4566 5.70114C22.8647 5.70114 24.0868 5.95353 25.1229 6.45832C26.159 6.93653 26.9693 7.73356 27.5538 8.8494C28.1649 9.93867 28.5235 11.4132 28.6298 13.2729C28.7361 15.1061 28.5501 17.3643 28.0719 20.0476C27.5671 23.0232 26.8498 25.4408 25.9199 27.3006C24.9901 29.1603 24.0336 30.5949 23.0506 31.6045C24.2462 31.6045 25.176 31.6842 25.8402 31.8436C26.5044 32.003 27.1287 32.189 27.7132 32.4015L27.3546 34.3941H16.3955ZM16.8737 31.6045C17.6176 31.6045 18.3747 31.2857 19.1452 30.6481C19.9422 29.9839 20.6994 28.8149 21.4167 27.1412C22.134 25.4674 22.7584 23.1029 23.2897 20.0476C23.6883 17.7628 23.9008 15.8765 23.9274 14.3887C23.9539 12.8744 23.8211 11.6921 23.5288 10.842C23.2632 9.9918 22.9045 9.39403 22.4529 9.04865C22.0012 8.67671 21.4964 8.49073 20.9385 8.49073C20.2212 8.49073 19.464 8.82283 18.667 9.48702C17.8965 10.1246 17.1526 11.2803 16.4353 12.9541C15.718 14.6278 15.0804 16.9924 14.5224 20.0476C14.0974 22.4387 13.8848 24.3914 13.8848 25.9058C13.8848 27.4201 14.0309 28.5891 14.3232 29.4127C14.6154 30.2363 14.9874 30.8075 15.439 31.1263C15.8907 31.4451 16.3689 31.6045 16.8737 31.6045Z"
+        fill="white"
+      />
+    </svg>
+
+    <span class="fs-5"><strong>Quotes</strong></span>
+  </a>
+
+  <ul class="nav nav-pills">
+    <li class="nav-item me-3">
+      <a
+        routerLink="/request-quote"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        aria-current="Request quote"
+      >
+        Request Quote</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        routerLink="/sample-quote"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        aria-current="Sample quote"
+        >Sample Quote</a
+      >
+    </li>
+  </ul>
 </header>
