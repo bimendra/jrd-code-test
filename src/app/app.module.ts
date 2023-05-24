@@ -23,6 +23,8 @@ import { QuotesComponent } from './pages/quotes/quotes.component';
 import { ListingTableComponent } from './lib/components/listing-table/listing-table.component';
 import { SidebarComponent } from './lib/components/sidebar/sidebar.component';
 import { HeaderComponent } from './lib/components/header/header.component';
+import { quoteReducer } from './state/quote.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { HeaderComponent } from './lib/components/header/header.component';
       dataEncapsulation: false,
       passThruUnknownUrl: true,
     }),
+    StoreModule.forRoot({ quote: quoteReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

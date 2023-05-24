@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { orderBy, mean, min, max } from 'lodash';
-import { QuoteRequestService } from 'src/app/quote-request.service';
+import { QuoteService } from 'src/app/quotes/quote.service';
 import QuoteRequest from 'src/app/lib/interfaces/quote-request.interface';
 import Listing from 'src/app/lib/interfaces/listing.interface';
+import { Store } from '@ngrx/store';
+import { selectQuote } from 'src/app/state/quote.selector';
+import { QuoteApiActions } from 'src/app/state/quote.actions';
+import { QuoteRequestService } from 'src/app/quote-request.service';
+import { Quote } from 'src/app/quotes/quotes.model';
 
 @Component({
   selector: 'jrd-quotes',
@@ -11,7 +16,12 @@ import Listing from 'src/app/lib/interfaces/listing.interface';
   styleUrls: ['./quotes.component.scss'],
 })
 export class QuotesComponent {
-  constructor(private quoteRequestService: QuoteRequestService) {}
+  constructor(
+    private quoteRequestService: QuoteService,
+    private store: Store
+  ) {}
+
+  // quoteNgRx = this.store.select(selectQuote);
 
   quoteRequest?: QuoteRequest;
   page: number = 1;
@@ -51,6 +61,8 @@ export class QuotesComponent {
         this.minPrice = min(prices);
         this.maxPrice = max(prices);
         this.processPagination();
+        this.store.dispatch(QuoteApiActions.retrievedQuote(quoteRequest));
+        // console.log('from ngrx store', this.quoteNgRx);
       });
   }
 
